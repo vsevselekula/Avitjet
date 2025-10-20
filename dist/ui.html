@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Avitjet Builder</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Inter, sans-serif;
+      }
+      body {
+        margin: 0;
+        padding: 16px;
+        background: var(--figma-color-bg);
+        color: var(--figma-color-text);
+        font-size: 12px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-weight: 500;
+      }
+      input[type="number"],
+      select {
+        padding: 6px 8px;
+        border-radius: 4px;
+        border: 1px solid var(--figma-color-border, #b3b3b3);
+        font-size: 12px;
+      }
+      button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        background: #2f80ed;
+        color: white;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:disabled {
+        background: #9aa6c1;
+        cursor: not-allowed;
+      }
+      .hint {
+        font-size: 11px;
+        color: var(--figma-color-text-tertiary, #666);
+        line-height: 1.4;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .row select {
+        flex: 1 1 auto;
+      }
+      .checkbox-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .checkbox-row input {
+        margin: 0;
+      }
+      .error {
+        color: #ff5a5f;
+        font-size: 11px;
+        min-height: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="avitjet-form">
+      <label>
+        Grid step (px)
+        <input id="grid-input" type="number" min="2" step="1" value="8" />
+      </label>
+      <div class="row">
+        <label style="flex: 1 1 auto;">
+          Stroke
+          <select id="stroke-select">
+            <option value="1">1G</option>
+            <option value="2">2G</option>
+          </select>
+        </label>
+      </div>
+      <label class="checkbox-row">
+        <input id="segments-checkbox" type="checkbox" />
+        <span>Show color segments</span>
+      </label>
+      <button id="create-button" type="submit">Create Avitjet</button>
+      <div class="error" id="error"></div>
+      <div class="hint">
+        Base size: 8×8 modules. Border is 1G or 2G. Inner area clamps to ≥4G. Aspect ratio limited to 4:1.
+      </div>
+    </form>
+    <script type="module" src="./ui.js"></script>
+  </body>
+</html>
